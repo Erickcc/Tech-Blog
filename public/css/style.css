@@ -85,3 +85,36 @@ body{
 .form-attachment{
     margin: 10px 0;
 }
+
+.post-element{
+    background-color: #4F4F4F;
+    margin: 20px 30px;
+    border-radius: 10px;
+}
+
+.post-title{
+    color:floralwhite;
+    width: 60%;
+    text-align: left;
+    font-size: 25px;
+}
+
+.post-creator{
+    color:floralwhite;
+    width: 30%;
+    text-align: right;
+    font-size: 25px;
+    align-self: center;
+}
+
+.edit-header{
+    color:floralwhite;
+    text-align: left;
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.edit-inner-header{
+    color: #2f2f2f;
+    font-size: 25px;;
+}
