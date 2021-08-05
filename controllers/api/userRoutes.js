@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
 // Create a new user
 router.post('/', async (req, res) => {
   try {
-    const userData = await User.create(req.body);
+    const userData = await User.create({name: req.body.username, password: req.body.password});
 
     req.session.save(() => {
       req.session.user_id = userData.id;
@@ -33,25 +33,27 @@ router.post('/', async (req, res) => {
 // Compare email and password with database to see if credentials are valid and login the user
 router.post('/login', async (req, res) => {
   try {
-    const userData = await User.findOne({ where: { email: req.body.email } });
-
+    // Find a user with the inputted name
+    const userData = await User.findOne({ where: { name: req.body.username } });
+    // If name doesnt exist send back an error
     if (!userData) {
       res
         .status(400)
-        .json({ message: 'Incorrect email or password, please try again' });
+        .json({ message: 'Incorrect username or password, please try again' });
       return;
-    }
-
+    } 
+    // Compare password stored in db with inputted password
     const validPassword = await userData.checkPassword(req.body.password);
-
+    // If password doesnt exist send back an error
     if (!validPassword) {
       res
         .status(400)
-        .json({ message: 'Incorrect email or password, please try again' });
+        .json({ message: 'Incorrect username or password, please try again' });
       return;
     }
-
+    
     req.session.save(() => {
+      // Stores the id and whether the user is logged in or not in session
       req.session.user_id = userData.id;
       req.session.logged_in = true;
       

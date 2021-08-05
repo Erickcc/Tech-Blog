@@ -1,27 +1,29 @@
+{{!-- Current page title card located right under the navbar --}}
 <div class="title-container">
   <div class="title-tag">
     The Tech Blog
   </div>
 </div>
 
+{{!-- displays the sign up form menu --}}
 <div class="container-fluid">
   <div class="card-element">
     <div class="form-title">
       Sign Up
     </div>
-    <form class="form-body">
+    <form class="form-body signup-form">
       <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Username</label>
         <input
-          type="email"
+          type="text"
           class="form-control"
-          id="usernameInput"
+          id="username-input"
           aria-describedby="emailHelp"
         />
       </div>
       <div class="mb-3">
         <label for="exampleInputPassword1" class="form-label">Password</label>
-        <input type="password" class="form-control" id="passwordInput" />
+        <input type="password" class="form-control" id="password-input" />
       </div>
       <div class="d-grid gap-2">
         <button type="submit" class="btn btn-secondary">Sign up</button>
@@ -32,3 +34,6 @@
     </form>
   </div>
 </div>
+
+{{!-- script that listens to the sign up button and makes a call to the api --}}
+<script src="/js/signup.js"></script>

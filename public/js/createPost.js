@@ -1,6 +1,7 @@
 const createFormHandler = async (event) => {
     event.preventDefault();
-  
+
+    // Get title and content from its respective boxes and makes a POST api call
     const title = document.querySelector("#title-box").value.trim();
     const content = document.querySelector("#content-box").value.trim();
     const userID = window.location.href.split("/")?.pop();
@@ -19,6 +20,7 @@ const createFormHandler = async (event) => {
     }
   };
   
+  // Listens to the comment form button
   document
     .querySelector(".comment-form")
     .addEventListener("submit", createFormHandler);

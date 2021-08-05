@@ -1,7 +1,9 @@
 const router = require("express").Router();
 const { Comment } = require("../../models");
 
+// Create a new comment that is going to be tied to a post
 router.post("/", (req, res) => {
+  // Get current date and format it
   const today = new Date();
   const formattedDate =
     today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();

@@ -1,3 +1,4 @@
+// Calls the api that destroys the user session and logs the user out
 const logout = async () => {
   const response = await fetch('/api/users/logout', {
     method: 'POST',
@@ -11,4 +12,5 @@ const logout = async () => {
   }
 };
 
+// Listens to the logout button
 document.querySelector('#logout-btn').addEventListener('click', logout);

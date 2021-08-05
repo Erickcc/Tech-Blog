@@ -1,9 +1,11 @@
+{{!-- Current page title card located right under the navbar --}}
 <div class="title-container">
   <div class="title-tag">
     The Tech Blog
   </div>
 </div>
 
+{{!-- Form that has the login button --}}
 <div class="container-fluid">
   <div class="card-element">
     <div class="form-title">
@@ -13,9 +15,9 @@
       <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Username</label>
         <input
-          type="email"
+          type="text"
           class="form-control"
-          id="email-input"
+          id="username-input"
           aria-describedby="emailHelp"
         />
       </div>
@@ -33,4 +35,5 @@
   </div>
 </div>
 
+{{!-- Script that listens to the button and makes the api call to login the user --}}
 <script src="/js/login.js"></script>

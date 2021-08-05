@@ -1,9 +1,11 @@
+{{!-- Current page title card located right under the navbar --}}
 <div class="title-container">
   <div class="title-tag">
     Your Dashboard
   </div>
 </div>
 
+{{!-- Create cards for each of the current user's posts --}}
 <div class="container-fluid">
   {{#each postData as |post|}}
   <div class="post-element">
@@ -19,7 +21,7 @@
     </a>
   </div>
   {{/each}}
-
+{{!-- Create the new post button --}}
   <div class="text-center">
     <a href="/dashboard/create/{{user_id}}">
     <button type="button" class="btn btn-dark btn-lg" id="new-post-btn">+ New

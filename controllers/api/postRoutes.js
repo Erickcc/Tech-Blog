@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { Post, User, Comment } = require("../../models");
 
+// Get all the posts, attach the user that created it as well
 router.get("/", async (req, res) => {
   try {
     const postData = await Post.findAll({
@@ -17,6 +18,7 @@ router.get("/", async (req, res) => {
   }
 });
 
+// get a single post and the comments attached to that post, include the user that created the post and those of the comments
 router.get("/:id", async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id, {
@@ -46,6 +48,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+// Create a new post
 router.post("/", (req, res) => {
   const today = new Date();
   const formattedDate =
@@ -65,6 +68,7 @@ router.post("/", (req, res) => {
     });
 });
 
+// Update an existing post
 router.put("/", (req, res) => {
   Post.update(
     {
@@ -84,6 +88,7 @@ router.put("/", (req, res) => {
     });
 });
 
+// Delete a single post, only deletes the post if it belongs to the user that is logged in
 router.delete("/", (req, res) => {
   Post.destroy({
     where: { id: req.body.postID, user_id: req.session.user_id },

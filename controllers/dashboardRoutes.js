@@ -5,8 +5,10 @@ const redirectToID = require("../utils/redirect");
 const validateUser = require("../utils/validate");
 const validatePostAccess = require("../utils/validateEdit");
 
+// This route validates if the user is logged in and attaches the user id to the url and redirects to the "/:id" dashboard route
 router.get("/", withAuth, redirectToID, async (req, res) => {});
 
+// Gets all the posts of a single user, validates the posts that are trying to be accessed belongs to the user that is logged in, this is the dashboard view
 router.get("/:id", withAuth, validateUser, async (req, res) => {
   try {
     const postData = await Post.findAll({
@@ -25,8 +27,10 @@ router.get("/:id", withAuth, validateUser, async (req, res) => {
   }
 });
 
+// Get a specific post of a specific user
+// ValidatePostAccess finds out if the currentuser attached to the id is the same as the one logged in (stored in session)
 router.get("/edit/:id", withAuth, validatePostAccess, async (req, res) => {
-  // Get all the text after the string "post="
+  // Get all the text after the string "post=" this gives us the post id
   const postID = Number(req.params.id.match(/(?<=post=)(.*)/)[0]);
   try {
     const postData = await Post.findByPk(postID, {
@@ -42,16 +46,8 @@ router.get("/edit/:id", withAuth, validatePostAccess, async (req, res) => {
   }
 });
 
-router.get("/create/:id", withAuth, validateUser, async (req, res) => {
-  try {
-    res.render("newPost", {
-      logged_in: req.session.logged_in,
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
+// renders the new post page
+// Validate if a user is logged in, validate if the user in session === the user that is being passed in the url
 router.get("/create/:id", withAuth, validateUser, async (req, res) => {
   try {
     res.render("newPost", {
