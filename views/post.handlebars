@@ -1,11 +1,11 @@
-{{!-- Current page title card located right under the navbar --}}
+{{! Current page title card located right under the navbar }}
 <div class="title-container">
   <div class="title-tag">
     The Tech Blog
   </div>
 </div>
 
-{{!-- Display a single post and all the comments that are related to that post --}}
+{{! Display a single post and all the comments that are related to that post }}
 <div class="container-fluid">
   <div class="card-element">
     <div class="card-header">
@@ -35,22 +35,24 @@
       </div>
     </div>
   {{/each}}
+  {{!-- Only show the add comment button if logged in --}}
+  {{#if logged_in}}
+    <div class="card-element">
+      <div class="card-header">
+        <br />
+      </div>
+      <div class="card-content">
+        <form class="form-body comment-form">
+          <label for="commentBox" class="mb-3">Comment</label>
+          <textarea class="form-control" id="comment-box" rows="3"></textarea>
+          <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-secondary mt-3">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
 
-  <div class="card-element">
-    <div class="card-header">
-      <br />
-    </div>
-    <div class="card-content">
-      <form class="form-body comment-form">
-        <label for="commentBox" class="mb-3">Comment</label>
-        <textarea class="form-control" id="comment-box" rows="3"></textarea>
-        <div class="d-grid gap-2">
-          <button type="submit" class="btn btn-secondary mt-3">Submit</button>
-        </div>
-      </form>
-    </div>
-  </div>
+    {{! Scrip that listens to the submit button and makes the api call to create a new comment }}
+    <script src="/js/post.js"></script>
+  {{/if}}
 </div>
-
-{{!-- Scrip that listens to the submit button and makes the api call to create a new comment --}}
-<script src="/js/post.js"></script>
